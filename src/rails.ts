@@ -188,169 +188,49 @@ const newCommand = {
   ],
 };
 
+const generateCommand = {
+  name: "generate",
+  description: "Run a rails generator",
+  args: {
+    name: "path",
+    description:
+      "Path to directory to be created containing the new application",
+  },
+  options: [
+    {
+      name: "-skip-namespace",
+      description: "Skip namespace (affects only isolated applications)",
+      args: {},
+    },
+  ],
+};
+
 const dbOptions = [
   {
-    name: "--backtrace",
-    description:
-      "Enable full backtrace.  OUT can be stderr (default) or stdout",
+    name: "--skip-namespace",
+    description: "Skip namespace (affects only isolated engines)",
   },
   {
-    name: "--comments",
-    description: "Show commented tasks only",
+    name: "--no-skip-namespace",
+    description: "Do not skip namespace (affects only isolated engines)",
   },
   {
-    name: "--job-stats",
-    description:
-      "Display job statistics. LEVEL=history displays a complete job list",
+    name: "--skip-collision-check",
+    description: "Skip collision check",
   },
   {
-    name: "--rules",
-    description: "Trace the rules resolution",
+    name: "--no-skip-collision-check",
+    description: "Do not skip collision check",
   },
   {
-    name: "--suppress-backtrace",
-    description:
-      "Suppress backtrace lines matching regexp PATTERN. Ignored if --trace is on",
-    args: { name: "pattern" },
+    name: ["-r", "--ruby"],
+    description: "Path to the Ruby binary of your choice",
+    args: { name: "path" },
   },
   {
-    name: ["-A", "--all"],
-    description:
-      "Show all tasks, even uncommented ones (in combination with -T or -D)",
-  },
-  {
-    name: ["-B", "--build-all"],
-    description:
-      "Build all prerequisites, including those which are up-to-date",
-  },
-  {
-    name: ["-D", "--describe"],
-    description: "Describe the tasks (matching optional PATTERN), then exit",
-    args: {
-      name: "pattern",
-      isOptional: true,
-    },
-  },
-  {
-    name: ["-e", "--execute"],
-    description: "Execute some Ruby code and exit",
-    args: { name: "code" },
-  },
-  {
-    name: ["-E", "--execute-continue"],
-    description:
-      "Execute some Ruby code, then continue with normal task processing",
-    args: { name: "code" },
-  },
-  {
-    name: ["-f", "--rakefile"],
-    description: "Use FILENAME as the rakefile to search for",
-    args: { name: "filename" },
-  },
-  {
-    name: "-G",
-    description:
-      "Use standard project Rakefile search paths, ignore system wide rakefiles",
-  },
-  {
-    name: ["-g", "--system"],
-    description:
-      "Using system wide (global) rakefiles (usually '~/.rake/*.rake')",
-  },
-  {
-    name: ["-I", "--libdir"],
-    description: "Include LIBDIR in the search path for required modules",
-    args: { name: "libdir" },
-  },
-  {
-    name: ["-j", "--jobs"],
-    description:
-      "Specifies the maximum number of tasks to execute in parallel. (default is number of CPU cores + 4)",
-    args: { name: "number" },
-  },
-  {
-    name: ["-m", "--multitask"],
-    description: "Treat all tasks as multitasks",
-    args: {},
-  },
-  {
-    name: ["-n", "--dry-run"],
-    description: "Do a dry run without executing actions",
-    args: {},
-  },
-  {
-    name: "-N",
-    description: "Do not search parent directories for the Rakefile",
-    args: {},
-  },
-  {
-    name: ["-P", "--prereqs"],
-    description: "Display the tasks and dependencies, then exit",
-    args: {},
-  },
-  {
-    name: ["-p", "--execute-print"],
-    description: "Execute some Ruby code, print the result, then exit",
-    args: {},
-  },
-  {
-    name: ["-q", "--quiet"],
-    description: "Do not log messages to standard output",
-    args: {},
-  },
-  {
-    name: ["-r", "--require"],
-    description: "Require MODULE before executing rakefile",
-    args: { name: "module" },
-  },
-  {
-    name: ["-R", "--rakelibdir"],
-    description:
-      "Auto-import any .rake files in RAKELIBDIR. (default is 'rakelib')",
-    args: { name: "rakelibdir" },
-  },
-  {
-    name: "--rakelib",
-    description:
-      "-s, --silent                     Like --quiet, but also suppresses the 'in directory' announcement",
-    args: {},
-  },
-  {
-    name: ["-t", "--trace"],
-    description:
-      "Turn on invoke/execute tracing, enable full backtrace. OUT can be stderr (default) or stdout",
-    args: {},
-  },
-  {
-    name: ["-T", "--tasks"],
-    description:
-      "Display the tasks (matching optional PATTERN) with descriptions, then exit. -AT combination displays all of tasks contained no description",
-    args: {},
-  },
-  {
-    name: ["-v", "--verbose"],
-    description: "Log message to standard output",
-    args: {},
-  },
-  {
-    name: ["-V", "--version"],
-    description: "Display the program version",
-    args: {},
-  },
-  {
-    name: ["-W", "--where"],
-    description: "Describe the tasks (matching optional PATTERN), then exit",
-    args: { name: "pattern" },
-  },
-  {
-    name: ["-X", "--no-deprecation-warnings"],
-    description: "Disable the deprecation warnings",
-    args: {},
-  },
-  {
-    name: ["-h", "--help"],
-    description: "Display this help message",
-    args: {},
+    name: ["-m", "--template"],
+    description: "Path to the Ruby binary of your choice",
+    args: { name: "path" },
   },
 ];
 
